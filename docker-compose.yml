@@ -1,0 +1,11 @@
+version: '3.3'
+services:
+  pubapi:
+     build: .
+     restart: on-failure
+     ports:
+       - '9090:8080'
+     expose:
+       - '9090'
+     container_name: pubapi
+     image: pubapi 
