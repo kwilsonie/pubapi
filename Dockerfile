@@ -1,7 +1,8 @@
 FROM openjdk:oraclelinux7   
 
-# Install curl
+# Install curl using yum
 RUN yum install curl
+
 
 # Install Maven
 ARG MAVEN_VERSION=3.9.2
