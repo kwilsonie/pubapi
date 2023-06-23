@@ -1,10 +1,7 @@
-#FROM openjdk:20-jdk-alpine
-#FROM openjdk:22-ea-2-jdk-oraclelinux8
 FROM openjdk:oraclelinux7   
 
-#RUN apk add --update curl tar bash && rm -f /var/cache/apk/*
-RUN yum install curl 
-
+# Install curl
+RUN yum install curl
 
 # Install Maven
 ARG MAVEN_VERSION=3.9.2
@@ -15,10 +12,10 @@ ln -s /usr/share/maven/bin/mvn /usr/bin/mvn
 ENV MAVEN_HOME /usr/share/maven
 ENV MAVEN_CONFIG "$USER_HOME_DIR/.m2"
 
-# speed up Maven JVM a bit
+# Speed up Maven JVM a bit
 ENV MAVEN_OPTS="-XX:+TieredCompilation -XX:TieredStopAtLevel=1"
 
-# Install Tomcat
+# Create dirs and install Tomcat
 RUN mkdir /opt/service
 RUN mkdir /opt/service/tomcat
 WORKDIR /opt/service/tomcat
@@ -26,6 +23,7 @@ RUN curl -O -L https://downloads.apache.org/tomcat/tomcat-10/v10.1.10/bin/apache
 RUN tar xfz apache*.tar.gz
 RUN mv apache-tomcat-10.1.10/* /opt/service/tomcat/.
 
+# Create dirs and copy code to build in container.
 WORKDIR /opt/service/tomcat
 RUN mkdir /opt/service/tomcat/src
 COPY pom.xml /opt/service/tomcat
