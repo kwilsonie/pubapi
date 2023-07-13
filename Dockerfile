@@ -13,7 +13,7 @@ ENV MAVEN_OPTS="-XX:+TieredCompilation -XX:TieredStopAtLevel=1"
 # Create dirs and install Tomcat
 RUN mkdir /opt/service
 
-# Create user to run app
+# Create user to run app - try user 
 RUN groupadd -g 999 appuser               
 RUN useradd -r -u 1000 -g appuser appuser 
 RUN mkdir /home/appuser                   
