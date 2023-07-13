@@ -48,3 +48,4 @@ USER appuser
 WORKDIR /opt/service/tomcat
 EXPOSE 8080
 CMD ["/opt/service/tomcat/bin/catalina.sh", "run"]
+
